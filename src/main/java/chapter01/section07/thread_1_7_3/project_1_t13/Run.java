@@ -6,8 +6,10 @@ public class Run {
 		try {
 			MyThread thread = new MyThread();
 			thread.start();
-			Thread.sleep(2000);
+			Thread.sleep(20);
+			System.out.println("guohao");
 			thread.interrupt();
+			System.out.println("guohao2");
 		} catch (InterruptedException e) {
 			System.out.println("main catch");
 			e.printStackTrace();

@@ -25,7 +25,7 @@ public class PrintString implements Runnable {
 		}
 	}
 
-	@Override
+
 	public void run() {
 		printStringMethod();
 	}

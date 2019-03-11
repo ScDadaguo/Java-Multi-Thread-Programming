@@ -5,8 +5,11 @@ public class Run {
 		try {
 			MyThread thread = new MyThread();
 			thread.start();
-			Thread.sleep(2000);
-			thread.interrupt();
+			Thread.sleep(10);
+			System.out.println("guohao");
+			Thread.currentThread().interrupt();
+//			thread.interrupt();
+			System.out.println("guohao");
 		} catch (InterruptedException e) {
 			System.out.println("main catch");
 			e.printStackTrace();
