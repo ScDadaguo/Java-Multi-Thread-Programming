@@ -14,19 +14,20 @@ public class Depot {
         int left=val;
         while (left > 0) {
             // 库存已满时，等待“消费者”消费产品。
-            while (size >= capacity) {
+            if (size >= capacity) {
                 wait();
+            }
                 // 获取“实际生产的数量”(即库存中新增的数量)
                 // 如果“库存”+“想要生产的数量”>“总的容量”，则“实际增量”=“总的容量”-“当前容量”。(此时填满仓库)
                 // 否则“实际增量”=“想要生产的数量
-                int inc=(size+left)>capacity ? (capacity-left):left;
+                int inc=(size+left)>capacity ? (capacity-size):left;
                 size+=inc;
                 //想要生产的>实际生产的   仓满了后还要等待消费后继续生产
                 left-=inc;
                 System.out.printf("%s produce(%3d) --> left=%3d, inc=%3d, size=%3d\n",
                         Thread.currentThread().getName(), val, left, inc, size);
                 notifyAll();
-            }
+
         }
 
     }
@@ -35,8 +36,9 @@ public class Depot {
         // left 表示“客户要消费数量”(有可能消费量太大，库存不够，需多此消费)
         int left = val;
         while (left > 0) {
-            while (size <= 0) {
+            if (size <= 0) {
                 wait();
+            }
                 // 获取“实际消费的数量”(即库存中实际减少的数量)
                 // 如果“库存”<“客户要消费的数量”，则“实际消费量”=“库存”；
                 // 否则，“实际消费量”=“客户要消费的数量”。
@@ -47,7 +49,7 @@ public class Depot {
                         Thread.currentThread().getName(), val, left, dec, size);
                 notifyAll();
             }
-        }
+
     }
     public String toString() {
         return "capacity:"+capacity+", actual size:"+size;
