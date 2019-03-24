@@ -15,7 +15,7 @@ public class MyService {
 			while (hasValue == true) {
 				condition.await();
 			}
-			System.out.println("打印★");
+			System.out.println("ABC");
 			hasValue = true;
 			condition.signal();
 		} catch (InterruptedException e) {
@@ -31,7 +31,7 @@ public class MyService {
 			while (hasValue == false) {
 				condition.await();
 			}
-			System.out.println("打印☆");
+			System.out.println("ABC");
 			hasValue = false;
 			condition.signal();
 		} catch (InterruptedException e) {
